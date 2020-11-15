@@ -1,68 +1,502 @@
 let abc_to_morse = {
-    ' ':'||',
-    'a':'._',
-    'b':'_...',
-    'c':'_._.',
-    'd':'_..',
-    'e':'.',
-    'f':'..-.',
-    'g':'__.',
-    'h':'....',
-    'i':'..',
-    'j':'.___',
-    'k':'_._',
-    'l':'._..',
-    'm':'__',
-    'n':'_.',
-    'o':'___',
-    'p':'.__.',
-    'q':'__._',
-    'r':'._.',
-    's':'...',
-    't':'_',
-    'u':'.._',
-    'v':'..._',
-    'w':'.__',
-    'x':'_.._',
-    'y':'_.__',
-    'z':'__..'
+' ':'||',
+'a':'._',
+'b':'_...',
+'c':'_._.',
+'d':'_..',
+'e':'.',
+'f':'..-.',
+'g':'__.',
+'h':'....',
+'i':'..',
+'j':'.___',
+'k':'_._',
+'l':'._..',
+'m':'__',
+'n':'_.',
+'o':'___',
+'p':'.__.',
+'q':'__._',
+'r':'._.',
+'s':'...',
+'t':'_',
+'u':'.._',
+'v':'..._',
+'w':'.__',
+'x':'_.._',
+'y':'_.__',
+'z':'__..'
 };
 
-let path_to_wordlist = "wordlists/all.txt";
+let file_content = `ananas
+apnenec
+arhitekt
+astronavt
+avtomobil
+avtoportret
+baker
+balet
+baletnik
+bankovec
+boben
+bonton
+brat
+bratranec
+brivnik
+brlog
+cenik
+cent
+center
+cilj
+cvet
+delec
+diagram
+dinozaver
+dom
+dostop
+duh
+duhovnik
+ekvator
+element
+evro
+fagot
+fagotist
+februar
+festival
+flavta
+flavtist
+flavtistka
+fotelj
+galeb
+gib
+glas
+godec
+gol
+golob
+gozd
+grad
+graf
+internet
+izdelek
+izgovor
+izhod
+izpit
+izvor
+jagoda
+januar
+jastreb
+jezik
+jambor
+kamen
+karta
+kilogram
+kip
+kipar
+kisik
+kitarist
+klanec
+klarinet
+klavir
+kolk
+koncert
+kontinent
+kozarec
+krhelj
+krog
+krompir
+kruh
+kvadrat
+labod
+les
+lik
+likalnik
+list
+lok
+lokvanj
+magnet
+mah
+material
+med
+medved
+mesec
+meter
+mikroorganizem
+milijon
+mineral
+mir
+miza
+motor
+mrak
+muzej
+nahod
+naliv
+namen
+namig
+napad
+napotek
+narod
+naslov
+naslovnik
+obraz
+obrazec
+obrazek
+oder
+odhodek
+odlomek
+odnos
+odpadek
+odsev
+odstavek
+odtenek
+odtis
+ogenj
+oglas
+oglje
+oklepaj
+okolje
+omara
+opis
+orel
+organ
+organizem
+orkester
+ostanek
+otrok
+oven
+pagoda
+pajkovec
+panj
+parlament
+pepel
+pesnik
+pianist
+piramida
+pirh
+pisatelj
+plazilec
+ples
+plin
+plod
+podatek
+podhod
+pogon
+pogovor
+pojav
+pol
+polh
+policistka
+pomen
+porabnik
+portret
+posameznik
+poskus
+posnetek
+potka
+potomec
+potopis
+poudarek
+pozdrav
+pragozd
+pravokotnik
+pravopis
+praznik
+prebivalec
+predpis
+predsednik
+predsodek
+pregovor
+premog
+prikaz
+pripadnik
+priseljenec
+prizor
+problem
+promet
+prostor
+radio
+razvoj
+red
+refren
+relief
+rezultat
+ribez
+ritem
+rob
+rod
+rog
+rokav
+rondo
+saksofon
+samec
+samoglasnik
+sesalec
+seznam
+simbol
+sin
+skladatelj
+sklep
+sladoled
+slikar
+sneg
+sod
+soglasnik
+sogovorec
+sorodnik
+sovrstnik
+splet
+spored
+stanovanje
+start
+stavek
+stereotip
+stik
+stol
+stolpec
+stric
+strip
+stroj
+strup
+sukanec
+svet
+tabor
+tabornica
+tabornik
+tekmovanje
+tekstil
+teleskop
+termometer
+tlak
+tloris
+tok
+tona
+top
+torta
+trak
+travnik
+trgovina
+trn
+ugled
+umetnik
+uvod
+valj
+valjar
+vdovec
+veja
+ventil
+verz
+veter
+vinograd
+vir
+vitamin
+vitez
+vod
+voda
+vodnik
+volk
+volkec
+volkulja
+vosek
+vozel
+vpliv
+vrabec
+vrh
+vrstnik
+vrt
+vrv
+vzorec
+vzrok
+zajedavec
+zajtrk
+zakon
+zalet
+zapis
+zastava
+zbor
+znanstvenik
+zob
+zvezda
+zvezek
+zvok
+bel
+besen
+bled
+cel
+cerkven
+debel
+dneven
+dobeseden
+dolg
+domiseln
+drevesen
+elektronski
+enak
+enakomeren
+enakopraven
+februarski
+festivalski
+glasben
+globok
+gol
+gospodinjski
+gost
+govorjen
+hiter
+interneten
+izjemen
+januarski
+jedilen
+jeklen
+jezikoven
+jutranji
+kisel
+kopenski
+koristen
+kratek
+kriv
+kulturen
+lasten
+lesen
+likoven
+ljudski
+magneten
+mednaroden
+meglen
+mesten
+mineralen
+mlad
+moder
+moderen
+morebiten
+morski
+motoren
+muzejski
+nag
+namenjen
+naraven
+nasilen
+nepoudarjen
+nestrpen
+nevaren
+nizek
+nov
+obmorski
+obnovljiv
+odgovoren
+ognjen
+organski
+oseben
+osnoven
+otrokov
+pester
+pisan
+plesniv
+plinast
+podhlajen
+podoben
+pogost
+pomladanski
+posamezen
+poudarjen
+pravokoten
+prepusten
+pretiran
+primeren
+pritrjen
+prometen
+radoveden
+rastlinski
+rjav
+rumen
+samostojen
+siv
+skupen
+sladek
+slan
+socialen
+sodoben
+soroden
+sposoben
+strupen
+svoboden
+telesen
+toploten
+tradicionalen
+trden
+umeten
+usmerjen
+ustrezen
+varen
+velik
+vetrn
+visok
+vodljiv
+vodoodporen
+vodoraven
+vpojen
+vreden
+vremenski
+vzporeden
+vztrajen
+zaporeden
+zarjavel
+zdrav
+zelen
+zimski
+zimzelen`;
 
-function getText(){
-    // read text from URL location
-    var request = new XMLHttpRequest();
-    request.open('GET', 'https://github.com/sintakticniSladkorcek/sintakticniSladkorcek.github.io/blob/main/wordlists/all.txt', true);
-    request.send(null);
-    request.onreadystatechange = function () {
-        if (request.readyState === 4 && request.status === 200) {
-            var type = request.getResponseHeader('Content-Type');
-            if (type.indexOf("text") !== 1) {
-                return request.responseText;
-            }
+let all_words = file_content.split('\n');
+
+function generate_identification_code(){
+    let abc_words = [];
+    let morse_words = [];
+    for(let i = 0; i < 10; i++){
+        let random_word = all_words[Math.floor(Math.random() * all_words.length)]; //Math.random.choice(all_words);
+        abc_words.push(random_word);
+
+        let morse_letters = word_to_morse(random_word);
+        let morse_word = '';
+        for(let j = 0; j < morse_letters.length; j++){
+            morse_word += morse_letters[j];
         }
+        morse_words.push(morse_word);
+        
+    }
+
+    return abc_words, morse_words;
+}
+
+function letter_to_morse(letter){
+    return abc_to_morse[letter];
+}
+
+function word_to_morse(word){
+    let letters = word.split('');
+    let morse_letters = letters.map(x => letter_to_morse(x) + '|');
+    morse_letters[morse_letters.length-1] = morse_letters[morse_letters.length-1].slice(0, -1); // remove | at the end of the word
+    return morse_letters;
+}
+
+function makeList(data) {
+    let listElement = document.createElement('ul');
+    let listItem;
+
+    document.getElementById('zgenerirane_besede').appendChild(listElement);
+
+    for (let i = 0; i < data.length; ++i) {
+        listItem = document.createElement('li');
+        listItem.innerHTML = data[i];
+        listElement.appendChild(listItem);
     }
 }
-
-let file_content = getText();
-let all_words = file_content.split('\n');
-for(var line = 0; line < 10; line++){
-    console.log(all_words[line]);
-}
-
 
 function generiraj_besede() {
-    console.log('Dela')
+    
     let place_for_words = document.getElementById("zgenerirane_besede");
-    place_for_words.innerHTML = "Your HTML here";
+    place_for_words.innerHTML = "Tvoje besede:";
+    let result = generate_identification_code();
+    makeList(result);
     if (place_for_words.style.display === "none") {
         place_for_words.style.display = "block";
-    // } else {
-    //     place_for_words.style.display = "none";
     }
-    return "p1 * p2";
+    return result;
 }
-
-// let button = document.getElementById('generiraj_besede');
-// button.addEventListener("click", generiraj_besede);
