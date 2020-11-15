@@ -477,14 +477,18 @@ function word_to_morse(word){
 }
 
 function makeList(data) {
-    let listElement = document.createElement('ul');
+    let listElement = document.createElement('ol');
     let listItem;
+    let listItemInside;
 
     document.getElementById('zgenerirane_besede').appendChild(listElement);
 
     for (let i = 0; i < data.length; ++i) {
         listItem = document.createElement('li');
-        listItem.innerHTML = data[i];
+        listItemInside = document.createElement('p');
+        listItemInside.classList.add("morse");
+        listItemInside.innerHTML = data[i];
+        listItem.appendChild(listItemInside);
         listElement.appendChild(listItem);
     }
 }
@@ -492,7 +496,7 @@ function makeList(data) {
 function generiraj_besede() {
     
     let place_for_words = document.getElementById("zgenerirane_besede");
-    place_for_words.innerHTML = "Tvoje besede:";
+    place_for_words.innerHTML = "";
     let result = generate_identification_code();
     makeList(result);
     if (place_for_words.style.display === "none") {
